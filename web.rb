@@ -213,11 +213,16 @@ end
 # A real implementation would include controls to prevent misuse
 post '/create_payment_intent' do
   # authenticate!
+
+  puts "poop1"
+
   payload = params
 
-  if request.content_type != nil and request.content_type.include? 'application/json' and params.empty?
-      payload = Sinatra::IndifferentHash[JSON.parse(request.body.read)]
-  end
+  puts "poop2"
+
+  payload = request.get_json(force=True)
+
+  puts "poop3"
 
   # # Calculate how much to charge the customer
   # amount = calculate_price(payload[:products], payload[:shipping])
