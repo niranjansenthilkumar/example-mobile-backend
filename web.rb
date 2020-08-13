@@ -24,6 +24,9 @@ end
 
 post '/ephemeral_keys' do
   authenticate!
+
+  puts @customer.id.inspect
+
   begin
     key = Stripe::EphemeralKey.create(
       {customer: @customer.id},
