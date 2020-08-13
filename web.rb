@@ -219,17 +219,18 @@ post '/create_payment_intent' do
       payload = Sinatra::IndifferentHash[JSON.parse(request.body.read)]
   end
 
-  # Calculate how much to charge the customer
-  amount = calculate_price(payload[:products], payload[:shipping])
+  # # Calculate how much to charge the customer
+  # amount = calculate_price(payload[:products], payload[:shipping])
 
   begin
     payment_intent = Stripe::PaymentIntent.create(
-      :amount => amount,
-      :currency => currency_for_country(payload[:country]),
-      :customer => payload[:customer_id] || @customer.id,
-      :description => "Example PaymentIntent",
-      :capture_method => ENV['CAPTURE_METHOD'] == "manual" ? "manual" : "automatic",
-      payment_method_types: payment_methods_for_country(payload[:country]),
+      :amount => payload[:amount],
+      :currency => 'usd',
+      :customer => payload[:customerId] || @customer.id,
+      :description => payload[:description],
+      :shipping => payload[:shipping],
+      # :capture_method => ENV['CAPTURE_METHOD'] == "manual" ? "manual" : "automatic",
+      payment_method_types: %w[card],
       :metadata => {
         :order_id => '5278735C-1F40-407D-933A-286E463E72D8',
       }.merge(payload[:metadata] || {}),
