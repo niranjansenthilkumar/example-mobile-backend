@@ -219,8 +219,8 @@ post '/create_payment_intent' do
   payload = params
 
   print "poop2"
-
-  payload = request.get_json(force=True)
+  
+  payload = JSON.parse(request.body.read)
 
   print "poop3"
 
