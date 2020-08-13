@@ -214,15 +214,15 @@ end
 post '/create_payment_intent' do
   # authenticate!
 
-  puts "poop1"
+  print "poop1"
 
   payload = params
 
-  puts "poop2"
+  print "poop2"
 
   payload = request.get_json(force=True)
 
-  puts "poop3"
+  print "poop3"
 
   # # Calculate how much to charge the customer
   # amount = calculate_price(payload[:products], payload[:shipping])
