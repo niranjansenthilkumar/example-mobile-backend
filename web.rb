@@ -59,7 +59,7 @@ def authenticate!
 
         if (Stripe.api_key.start_with?('sk_test_'))
           # only attach test cards in testmode
-          attach_customer_test_cards()
+#          attach_customer_test_cards()
         end
       rescue Stripe::InvalidRequestError
       end
