@@ -212,7 +212,7 @@ end
 # https://stripe.com/docs/api/payment_intents/create
 # A real implementation would include controls to prevent misuse
 post '/create_payment_intent' do
-  # authenticate!
+  authenticate!
 
   print "poop1"
 
