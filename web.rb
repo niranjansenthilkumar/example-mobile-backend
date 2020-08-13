@@ -231,16 +231,16 @@ post '/create_payment_intent' do
 
   begin
     payment_intent = Stripe::PaymentIntent.create(
-      :amount => payload[:amount],
+      :amount => payload['amount'],
       :currency => 'usd',
-      :customer => payload[:customerId] || @customer.id,
-      :description => payload[:description],
-      :shipping => payload[:shipping],
+      :customer => payload['customerId'] || @customer.id,
+      :description => payload['description'],
+      :shipping => payload['shipping'],
       # :capture_method => ENV['CAPTURE_METHOD'] == "manual" ? "manual" : "automatic",
       payment_method_types: %w[card],
       :metadata => {
         :order_id => '5278735C-1F40-407D-933A-286E463E72D8',
-      }.merge(payload[:metadata] || {}),
+      }.merge(payload['metadata'] || {}),
     )
   rescue Stripe::StripeError => e
     status 402
