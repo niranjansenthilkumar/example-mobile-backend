@@ -219,10 +219,12 @@ post '/create_payment_intent' do
   payload = params
 
   print "poop2"
-  
+
   payload = JSON.parse(request.body.read)
 
   print "poop3"
+
+  print(payload)
 
   # # Calculate how much to charge the customer
   # amount = calculate_price(payload[:products], payload[:shipping])
